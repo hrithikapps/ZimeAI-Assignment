@@ -1,11 +1,18 @@
-import "./App.css";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import LandingPage from "./components/LandingPage";
 
-function App() {
-  return (
-    <>
-      <h4>Hello World</h4>
-    </>
-  );
-}
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <LandingPage />,
+    // errorElement: <Error />,
+  },
+]);
 
-export default App;
+const AppLayout = () => {
+  return <RouterProvider router={appRouter} />;
+};
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<AppLayout />);
