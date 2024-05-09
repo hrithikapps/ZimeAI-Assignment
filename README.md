@@ -1,8 +1,23 @@
-# React + Vite
+# ZimeAI 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+JSON placeholder posts sharing application. 
 
-Currently, two official plugins are available:
+## Deploy Link : https://zime-ai-assignment-beta.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- React.js
+- React Router
+- Ant Design
+- Tailwind CSS
+
+## Features
+- Search
+- Filter
+- Pagination
+- Responsive design
+- React Router for navigation
+- Error Boundary
+
+## Dashboard
+![Zime](https://github.com/hrithikapps/ZimeAI-Assignment/assets/95870924/4789b240-0d74-4997-a1ca-9387d1e88024)
