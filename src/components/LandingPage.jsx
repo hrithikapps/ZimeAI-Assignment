@@ -7,6 +7,20 @@ import "../styles/LandingPage.css";
 const { Search } = Input;
 const { Option } = Select;
 
+const highlightText = (text, query) => {
+  if (!query.trim()) return text;
+  const regex = new RegExp(`(${query})`, "gi");
+  return text.split(regex).map((part, index) =>
+    regex.test(part) ? (
+      <span key={index} style={{ backgroundColor: "yellow" }}>
+        {part}
+      </span>
+    ) : (
+      part
+    )
+  );
+};
+
 const LandingPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -69,7 +83,7 @@ const LandingPage = () => {
       ...prev,
       current: 1,
     }));
-    navigate(`?page=${page}&search=${value}`);
+    navigate(`?page=1&search=${value}`);
   };
 
   const handleTagChange = (value) => {
@@ -78,7 +92,7 @@ const LandingPage = () => {
       ...prev,
       current: 1,
     }));
-    navigate(`?page=${page}&tags=${value.join("+")}`);
+    navigate(`?page=1&tags=${value.join("+")}`);
   };
 
   const filteredPosts = selectedTags.length
@@ -115,6 +129,7 @@ const LandingPage = () => {
       title: "Body",
       dataIndex: "body",
       key: "body",
+      render: (text) => highlightText(text, searchQuery),
     },
     {
       title: "Tags",
@@ -133,9 +148,6 @@ const LandingPage = () => {
     },
   ];
 
-  if (!posts) {
-    return;
-  }
   return (
     <>
       <section>
@@ -145,8 +157,10 @@ const LandingPage = () => {
             <Search
               placeholder="input search text"
               onSearch={handleSearch}
-              enterButton
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                navigate(`?page=1&search=${e.target.value}`);
+              }}
               value={searchQuery}
               className="searchbar"
             />
