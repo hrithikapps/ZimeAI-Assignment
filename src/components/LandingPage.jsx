@@ -153,10 +153,16 @@ const LandingPage = () => {
       <section>
         <div className="content-container">
           <h2>Placeholder Posts</h2>
-          <section className="header-container">
+          <section
+            className="header-container"
+            style={{
+              flexDirection: window.innerWidth <= 576 ? "column" : "row",
+            }}
+          >
             <Search
               placeholder="input search text"
               onSearch={handleSearch}
+              style={{ maxWidth: 200 }}
               onChange={(e) => {
                 setSearchQuery(e.target.value);
                 navigate(`?page=1&search=${e.target.value}`);

@@ -1,11 +1,37 @@
-.content-container {
-  padding: 20px;
+@media only screen and (min-width: 576px) {
+  .content-container {
+    padding: 5px;
+  }
 }
+
+@media only screen and (min-width: 768px) {
+  .content-container {
+    padding: 20px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .content-container {
+    padding: 30px;
+  }
+}
+
 h2 {
   text-align: center;
 }
 .header-container {
   display: flex;
+  gap: 20px;
   justify-content: space-between;
-  margin-bottom: 1vh;
+  margin-bottom: 5vh;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.ant-table {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
