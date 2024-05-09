@@ -77,13 +77,17 @@ const LandingPage = () => {
     navigate(`?page=${page}`);
   };
 
-  const handleSearch = (value) => {
-    setSearchQuery(value);
+  const handleSubmit = () => {
+    fetchData();
     setPagination((prev) => ({
       ...prev,
       current: 1,
     }));
-    navigate(`?page=1&search=${value}`);
+    navigate(`?page=1&search=${searchQuery}`);
+  };
+
+  const handleInputChange = (e) => {
+    setSearchQuery(e.target.value);
   };
 
   const handleTagChange = (value) => {
@@ -161,12 +165,9 @@ const LandingPage = () => {
           >
             <Search
               placeholder="input search text"
-              onSearch={handleSearch}
+              onSearch={handleSubmit}
               style={{ maxWidth: 200 }}
-              onChange={(e) => {
-                setSearchQuery(e.target.value);
-                navigate(`?page=1&search=${e.target.value}`);
-              }}
+              onChange={handleInputChange}
               value={searchQuery}
               className="searchbar"
             />
