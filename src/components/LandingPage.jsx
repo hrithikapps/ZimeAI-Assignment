@@ -41,7 +41,7 @@ const LandingPage = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https:  //dummyjson.com/posts/search?q=${searchQuery}&skip=${
+        `https://dummyjson.com/posts/search?q=${searchQuery}&skip=${
           (pagination.current - 1) * pagination.limit
         }&limit=${pagination.limit}`
       );
