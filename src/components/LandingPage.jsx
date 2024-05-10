@@ -3,6 +3,7 @@ import { Input, Pagination, Select, Table, Tag } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/LandingPage.css";
+import ErrorComponent from "./ErrorComponent";
 
 const { Search } = Input;
 const { Option } = Select;
@@ -34,18 +35,18 @@ const LandingPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
   const [allTags, setAllTags] = useState([]);
+  const [error, setError] = useState("");
 
   const fetchData = async () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://dummyjson.com/posts/search?q=${searchQuery}&skip=${
+        `https:  //dummyjson.com/posts/search?q=${searchQuery}&skip=${
           (pagination.current - 1) * pagination.limit
         }&limit=${pagination.limit}`
       );
 
       const { posts, total } = response.data;
-      console.log("posts", posts);
       setPosts(posts);
       setPagination((prev) => ({
         ...prev,
@@ -62,7 +63,9 @@ const LandingPage = () => {
 
       setAllTags(tags);
       setLoading(false);
+      setError(null);
     } catch (error) {
+      setError("Failed to fetch data. Please try again later.");
       console.error("Error fetching data:", error);
       setLoading(false);
     }
@@ -151,6 +154,10 @@ const LandingPage = () => {
       ),
     },
   ];
+
+  if (error) {
+    return <ErrorComponent error={error} />;
+  }
 
   return (
     <>
